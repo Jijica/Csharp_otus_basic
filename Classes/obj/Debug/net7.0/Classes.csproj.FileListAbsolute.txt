@@ -1,0 +1,15 @@
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\bin\Debug\net7.0\Classes.exe
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\bin\Debug\net7.0\Classes.deps.json
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\bin\Debug\net7.0\Classes.runtimeconfig.json
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\bin\Debug\net7.0\Classes.dll
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\bin\Debug\net7.0\Classes.pdb
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\obj\Debug\net7.0\Classes.csproj.AssemblyReference.cache
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\obj\Debug\net7.0\Classes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\obj\Debug\net7.0\Classes.AssemblyInfoInputs.cache
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\obj\Debug\net7.0\Classes.AssemblyInfo.cs
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\obj\Debug\net7.0\Classes.csproj.CoreCompileInputs.cache
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\obj\Debug\net7.0\Classes.dll
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\obj\Debug\net7.0\refint\Classes.dll
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\obj\Debug\net7.0\Classes.pdb
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\obj\Debug\net7.0\Classes.genruntimeconfig.cache
+C:\Users\ND\source\repos\Jijica\Otus_Fourth_Homework\Classes\obj\Debug\net7.0\ref\Classes.dll
