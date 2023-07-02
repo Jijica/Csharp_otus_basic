@@ -32,8 +32,9 @@ namespace Classes
             _stackSize++;
         }
 
-        public void Pop()
+        public string Pop()
         {
+            var poppedValue = _lastNode.Data;
             if (_lastNode.Data == null)
             {
                 throw new InvalidOperationException("Stack is already empty");
@@ -47,6 +48,7 @@ namespace Classes
                 _lastNode = _lastNode.Previous;
             }
             _stackSize--;
+            return poppedValue;
         }
 
         public static Stack Concat(params Stack[] stacksToConcat)
@@ -61,18 +63,6 @@ namespace Classes
                 }
             }
             return stackToReturn;
-        }
-
-        public List<string> StackToList(Stack stack)
-        {
-            var list = new List<string>();
-            while (stack.Top != null) 
-            {
-                list.Add(stack.Top);
-                stack._lastNode = stack._lastNode.Previous!;
-            }
-            list.Reverse();
-            return list;
         }
 
         class StackItem
