@@ -18,9 +18,6 @@ namespace Interfaces
             Console.WriteLine(chargeable.GetInfo());
             Console.ReadKey(true);
             chargeable.Charge();
-            
-
-
         }
     }
 }
