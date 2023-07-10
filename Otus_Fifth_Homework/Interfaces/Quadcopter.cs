@@ -4,7 +4,14 @@
     {
         private List<string> _componets = new List<string> {"rotor1","rotor2","rotor3","rotor4"};
         string IChargeable.GetInfo() => "My charging time is 3 sec";
-        string IRobot.GetInfo() => "dunno, some realization";
+        string IRobot.GetInfo() 
+        {
+            var str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var rnd = new Random();
+            return $"My serial number is {str[rnd.Next(str.Length)]}{rnd.Next(1000,9999)}-" +
+                   $"{str[rnd.Next(str.Length)]}{rnd.Next(1000, 9999)}-" +
+                   $"{str[rnd.Next(str.Length)]}{rnd.Next(1000, 9999)}";
+        }
         public List<string> GetComponents() => _componets;
         public void Charge() {
             Console.Write("Charging");
