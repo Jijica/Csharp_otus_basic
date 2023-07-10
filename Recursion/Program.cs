@@ -7,9 +7,7 @@ namespace Recursion
         static void Main(string[] args)
         {
             int position = 40;
-            var ticks = MethodElapsedTime(() => FibonacchiRecursiveSLN(position));
-            Console.WriteLine($"element {FibonacchiRecursiveSLN(position)} on position {position} was found in {ticks} ticks");
-           
+
             var sw = Stopwatch.StartNew();
             FibonacchiRecursiveSLN(position);
             sw.Stop();
@@ -21,13 +19,19 @@ namespace Recursion
             Console.WriteLine($"element {FibonacchiCycleSLN(position)} on position {position} was found in {sw.ElapsedTicks} ticks");
 
             sw.Restart();
+            FibonacchiRecursiveSLN(position);
+            sw.Stop();
+            Console.WriteLine($"element {FibonacchiRecursiveSLN(position)} on position {position} was found in {sw.ElapsedTicks} ticks");
+
+            sw.Restart();
             FibonacchiCycleSLN(position);
             sw.Stop();
             Console.WriteLine($"element {FibonacchiCycleSLN(position)} on position {position} was found in {sw.ElapsedTicks} ticks");
 
-            sw.Restart();
-            ticks = MethodElapsedTime(() => FibonacchiCycleSLN(position));
-            Console.WriteLine($"element {FibonacchiCycleSLN(position)} on position {position} was found in {ticks} ticks");
+            //var ticks = MethodElapsedTime(() => FibonacchiRecursiveSLN(position));
+            //Console.WriteLine($"element {FibonacchiRecursiveSLN(position)} on position {position} was found in {ticks} ticks");
+            //ticks = MethodElapsedTime(() => FibonacchiCycleSLN(position));
+            //Console.WriteLine($"element {FibonacchiCycleSLN(position)} on position {position} was found in {ticks} ticks");
         }
 
         static int FibonacchiRecursiveSLN(int position)
