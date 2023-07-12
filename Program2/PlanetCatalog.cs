@@ -1,15 +1,25 @@
-﻿namespace Program2
+﻿using Program2;
+
+namespace Program2
 {
     internal class PlanetCatalog
     {
         private List<Planet> _catalog = new List<Planet>();
         private int _methodCallingCounter;
 
-        public PlanetCatalog()
+        public PlanetCatalog(params Planet[] planets)
         {
-            _catalog.Add(new Planet("Venus", null));
-            _catalog.Add(new Planet("Earth", _catalog[0]));
-            _catalog.Add(new Planet("Mars", _catalog[1]));
+            if (planets == null)
+            {
+                _catalog.Add(new Planet("Venus", null!));
+                _catalog.Add(new Planet("Earth", _catalog[0]));
+                _catalog.Add(new Planet("Mars", _catalog[1]));
+            }
+            else
+            {
+                foreach (var planet in planets)
+                { _catalog.Add(planet); }
+            }
         }
 
         public (int? Position, double? EquatorLengthKilometers, string report) GetPlanet(string planetName)

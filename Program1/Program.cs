@@ -11,6 +11,7 @@ namespace Program1
                 Name = "Venus",
                 Position = 2,
                 EquatorLengthKilometers = 6_051.8 * 2 * Math.PI,
+                PreviousPlanet = (string)null
                 //PreviousPlanet = new
                 //{
                 //    Name = "Mercury",
