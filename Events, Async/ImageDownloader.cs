@@ -10,30 +10,29 @@ namespace Events__Async
         {
             foreach (string url in urls)
             {
-                _urlList.Add(url);
+                var downloadUnit = new DownloadUnit { Url = url };
+                _unitsList.Add(downloadUnit);
             }
         }
-        private static List<string> _urlList = new();
-        private List<Task> _taskList = new();
+        private List<DownloadUnit> _unitsList = new();
 
         public async Task DownloadAsync()
         {
-            foreach (var url in _urlList)
+            foreach (var unit in _unitsList)
             {
-                _taskList.Add(DownloadUnit(url));
+                unit.Task = DownloadUnitHandle(unit);
             }
-            foreach (var task in _taskList)
+            foreach (var unit in _unitsList)
             {
-                task.Start();
+                unit.Task.Start();
             }
-            await Task.WhenAll(_taskList.ToArray());
         }
 
         public async void DownloadStatus()
         {
-            foreach (var task in _taskList)
+            foreach (var unit in _unitsList)
             {
-                if (task.IsCompleted)
+                if (unit.Task.IsCompleted)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                 }
@@ -41,23 +40,29 @@ namespace Events__Async
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                 }
-                await Console.Out.WriteLineAsync($"{task.Id} is downloaded - {task.IsCompleted}");
+                await Console.Out.WriteLineAsync($"{unit.FileName} is downloaded - {unit.Task.IsCompleted}");
                 Console.ResetColor();
             }
             await Console.Out.WriteLineAsync();
         }
 
-        private async Task DownloadUnit(string url)
+        private async Task DownloadUnitHandle(DownloadUnit unit)
         {
-            string fileName;
-            fileName = "Otus_Test_" + url.Substring(url.LastIndexOf('/') + 1);
+            unit.FileName = "Otus_Test_" + unit.Url.Substring(unit.Url.LastIndexOf('/') + 1);
             var myWebClient = new WebClient();
             ImageStarted?.Invoke("Скачивание файла началось");
-            Console.WriteLine("Качаю \"{0}\" из \"{1}\" .......\n\n", fileName, url);
-            var task = myWebClient.DownloadFileTaskAsync(url, fileName);
+            Console.WriteLine("Качаю \"{0}\" из \"{1}\" .......\n\n", unit.FileName, unit.Url);
+            var task = myWebClient.DownloadFileTaskAsync(unit.Url, unit.FileName);
             await task;
-            Console.WriteLine("Успешно скачал \"{0}\" из \"{1}\"", fileName, url);
+            Console.WriteLine("Успешно скачал \"{0}\" из \"{1}\"", unit.FileName, unit.Url);
             ImageCompleted?.Invoke("Скачивание файла закончилось\n");
+        }
+
+        private class DownloadUnit
+        {
+            public string Url { get; set; }
+            public Task Task { get; set; }
+            public string FileName { get; set; }
         }
     }
 }
