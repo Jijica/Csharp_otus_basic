@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dictionary__hashset
+﻿namespace Dictionary__hashset
 {
     internal class OtusDictionary
     {
         private OtusDictionaryKVP[] _elements = new OtusDictionaryKVP[32];
-        public string Size { get =>  $"Size of kvp storing array - {_elements.Length}"; }
+        public string Size { get => $"Size of kvp storing array - {_elements.Length}"; }
         public string Count { get => $"{_elements.Where(e => e != null).ToArray().Length} kvp elements in storing array"; }
 
         public string this[int key]
         {
-            get 
+            get
             {
                 var position = NotGetHashCode(key);
                 if (_elements[position] == null)
@@ -36,13 +28,13 @@ namespace Dictionary__hashset
                 else
                 {
                     _elements[position].Value = value;
-                }  
+                }
             }
         }
-        public void Add(int key, string value) 
+        public void Add(int key, string value)
         {
             var position = NotGetHashCode(key);
-            if (value == null )
+            if (value == null)
             {
                 Console.WriteLine("Value should not be null");
             }
@@ -69,7 +61,7 @@ namespace Dictionary__hashset
         public string Get(int key)
         {
             var position = NotGetHashCode(key);
-            if (_elements[position] == null) 
+            if (_elements[position] == null)
             {
                 return "No element with specified key";
             }
@@ -112,10 +104,11 @@ namespace Dictionary__hashset
         }
 
         private int NotGetHashCode(int key) => key % _elements.Length;
+
         public class OtusDictionaryKVP
         {
             public int Key { get; set; }
-            public string Value { get; set; } 
+            public string Value { get; set; }
         }
     }
 }
