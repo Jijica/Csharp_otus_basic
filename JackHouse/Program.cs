@@ -27,7 +27,7 @@ namespace JackHouse
             part8.Addpart(part7.Poem);
             part9.Addpart(part8.Poem);
 
-            part9.Poem.ForEach(e => Console.WriteLine(e));
+            part9.Poem.ForEach(Console.WriteLine);
         }
     }
 
