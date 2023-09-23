@@ -19,11 +19,18 @@ namespace Dictionary__hashset
                 var position = NotGetHashCode(key);
                 if (_elements[position] == null)
                 {
-                    Console.WriteLine("Specified key not found");
+                    Console.WriteLine($"Specified key {key} not found");
                 }
                 else
                 {
-                    _elements[position].Value = value;
+                    if (value == null)
+                    {
+                        Console.WriteLine("Value should not be null");
+                    }
+                    else
+                    {
+                        _elements[position].Value = value;
+                    }
                 }
             }
         }
@@ -45,7 +52,7 @@ namespace Dictionary__hashset
                 {
                     if (_elements[position].Key == key)
                     {
-                        Console.WriteLine("Specified key already exists");
+                        Console.WriteLine($"Specified key {key} already exists");
                     }
                     else
                     {
@@ -60,7 +67,7 @@ namespace Dictionary__hashset
             var position = NotGetHashCode(key);
             if (_elements[position] == null)
             {
-                Console.WriteLine("Specified key not found");
+                Console.WriteLine($"Specified key {key} not found");
                 return "null";
             }
             return _elements[position].Value;
