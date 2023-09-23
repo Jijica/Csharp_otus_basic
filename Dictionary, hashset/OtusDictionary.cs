@@ -1,4 +1,6 @@
-﻿namespace Dictionary__hashset
+﻿using System;
+
+namespace Dictionary__hashset
 {
     internal class OtusDictionary
     {
@@ -10,13 +12,7 @@
         {
             get
             {
-                var position = NotGetHashCode(key);
-                if (_elements[position] == null)
-                {
-                    Console.WriteLine("Specified key not found");
-                    return "null";
-                }
-                return _elements[position].Value;
+                return Get(key);
             }
             set
             {
@@ -31,6 +27,7 @@
                 }
             }
         }
+
         public void Add(int key, string value)
         {
             var position = NotGetHashCode(key);
@@ -63,7 +60,8 @@
             var position = NotGetHashCode(key);
             if (_elements[position] == null)
             {
-                return "No element with specified key";
+                Console.WriteLine("Specified key not found");
+                return "null";
             }
             return _elements[position].Value;
         }
@@ -99,7 +97,7 @@
             }
             else
             {
-                throw new ArgumentOutOfRangeException();
+                Console.WriteLine("Too much elements");
             }
         }
 
