@@ -22,9 +22,9 @@
             }
             int elementsToTake = (int)Math.Round(percentage / 100.0 * collection.Count());
             return (IEnumerable<T>)collection
-                .OrderDescending()
                 .Take(elementsToTake)
-                .Select(func);
+                .Select(func)
+                .OrderDescending();
         }
     }
 }
