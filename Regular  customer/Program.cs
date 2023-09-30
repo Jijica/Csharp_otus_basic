@@ -9,7 +9,7 @@ namespace Regular_customer
         {
             var customer = new Customer();
             var shop = new Shop();
-            shop.ShopItems.CollectionChanged += customer.OnItemChanged;
+            shop.OnCollectionChanged += customer.OnItemChanged;
             OnButtonPressing(customer, shop);
         }
 

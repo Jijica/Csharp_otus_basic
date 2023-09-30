@@ -10,7 +10,7 @@ namespace Librarian
             OnButtonPressing(dictionary);
         }
 
-        static void OnButtonPressing(ConcurrentDictionary<string, int> dictionary)
+        static async void OnButtonPressing(ConcurrentDictionary<string, int> dictionary)
         {
             bool threeIsPressed = false;
             do
@@ -22,10 +22,11 @@ namespace Librarian
                     case "1":
                         Console.Write("Введите название книги: ");
                         var bookName = Console.ReadLine();
-                        var isSuccessfulAdded = dictionary.TryAdd(bookName, 0);
-                        if (isSuccessfulAdded)
+                        bool isEmpty = !dictionary.Any();
+                        bool isReadable = dictionary.TryAdd(bookName, 0) && isEmpty;
+                        if (isReadable)
                         {
-                            ReadBookAsync(dictionary, bookName);
+                            ReadBooksAsync(dictionary);
                         }
                         break;
                     case "2":
@@ -40,17 +41,26 @@ namespace Librarian
             while (!threeIsPressed);
         }
 
-        static async Task ReadBookAsync(ConcurrentDictionary<string, int> dictionary, string bookName)
+        static async Task ReadBooksAsync(ConcurrentDictionary<string, int> dictionary)
         {
             await Task.Run(() =>
-           {
-               while (dictionary[bookName] != 100)
-               {
-                   dictionary[bookName] += 1;
-                   Thread.Sleep(1000);
-               }
-               dictionary.Remove(bookName, out int s);
-           });
+            {
+                while (dictionary.Any())
+                {
+                    Parallel.ForEach(dictionary, (book) =>
+                    {
+                        if (book.Value != 100)
+                        {
+                            dictionary[book.Key] += 1;
+                        }
+                        else
+                        {
+                            dictionary.Remove(book.Key, out int s);
+                        }
+                    });
+                    Thread.Sleep(1000);
+                }
+            });
         }
     }
 }

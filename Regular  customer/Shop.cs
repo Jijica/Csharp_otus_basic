@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,14 @@ namespace Regular_customer
     {
         private ObservableCollection<Item> _shopItemsObservable;
 
-        public Shop() { _shopItemsObservable = new ObservableCollection<Item>(); }
+        public delegate void CollectionChangedHandler(object? sender, NotifyCollectionChangedEventArgs e);
+        public event CollectionChangedHandler OnCollectionChanged;
 
-        public ObservableCollection<Item> ShopItems { get => _shopItemsObservable; set { } }
+        public Shop() 
+        { 
+            _shopItemsObservable = new ObservableCollection<Item>();
+            _shopItemsObservable.CollectionChanged += CollectionChanged; 
+        }
 
         public void Add()
         {
@@ -36,6 +42,11 @@ namespace Regular_customer
             {
                 Console.WriteLine("Товар не найден");
             }
+        }
+
+        private void CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnCollectionChanged.Invoke(sender, e);
         }
 
         public class Item
